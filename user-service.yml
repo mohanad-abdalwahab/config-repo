@@ -1,24 +1,11 @@
 server:
-  port: 8080
+  port: 8081
 
 spring:
   application:
-    name: api-gateway
-  cloud:
-    gateway:
-      routes:
-        - id: user-service
-          uri: lb://user-service
-          predicates:
-            - Path=/user/**
-        - id: application-service
-          uri: lb://application-service
-          predicates:
-            - Path=/application/**
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
+    name: user-service
+  config:
+    import: optional:configserver:http://localhost:8888
 
 eureka:
   client:
